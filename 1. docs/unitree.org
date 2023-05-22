@@ -75,11 +75,10 @@ The process itself was a bit cumbersome, had to do a lot of steps, including fix
 
 This created a ROS2 container that I access via VNC.
 
-I got the [[https://github.com/unitreerobotics/unitree_ros2_to_real/blob/main/src/ros2_walk_example.cpp][high-level walk example]] to work. None of the steps about configuring the IP address were done, it seems those aren't really necessary. Running the example requires:
+I got the [[https://github.com/unitreerobotics/unitree_ros2_to_real/blob/main/src/ros2_walk_example.cpp][high-level walk example]] to work. None of the steps about configuring the IP address were done, it seems those aren't really necessary. Running the example requires (after a ~colcon build~:
 
 #+begin_src bash
 cd ros2_ws
-colcon build
 source install/setup.bash
 #+end_src
 
@@ -97,3 +96,23 @@ Consider using [[https://github.com/MAVProxyUser/unitree_ros2_ws][this fork]].
 The pre-existing teleop node publishes Twist messages. There seems to be some [[https://github.com/unitreerobotics/unitree_ros_to_real/blob/master/unitree_legged_real/include/convert.h#L304][code]] that already interops with Twist messages in the ros_to_real package, but not in the ros2_to_real one. There is a [[https://github.com/unitreerobotics/unitree_ros2_to_real/pull/2/files][pull request]] that fixes this, and a [[https://github.com/MAVProxyUser/unitree_ros2_to_real][fork]] that has these implemented along with a keyboard teleop example.
 
 I was trying to write [[../2. software/3. ros/planar_translate.py][a converter]] that turns Twist messages into supported high-level commands, but I think I will just use this fork instead.
+
+Cloned the unitree_ros2_to_real and unitree_legged_sdk forks into the sdk directory, then moved the ros2_unitree_legged_msgs out from the ros2_to_real folder. It built with some warnings.
+
+The fork did not build the ros2_control_via_keyboard example by default, so I added into the CMakeList
+
+#+begin_src cmake
+add_executable(ros2_control_via_keyboard src/ros2_control_via_keyboard.cpp)
+target_link_libraries(ros2_twist_sub ${EXTRA_LIBS})
+ament_target_dependencies(ros2_control_via_keyboard rclcpp geometry_msgs)
+#+end_src
+
+and added ~ros2_control_via_keyboard~ into the install targets.
+
+To run it:
+#+begin_src bash
+ros2 run unitree_legged_real ros2_twist_sub highlevel
+ros2 run unitree_legged_real ros2_control_via_keyboard
+#+end_src
+
+Even though the node seemed to be publishing messages, the robot didn't move.
