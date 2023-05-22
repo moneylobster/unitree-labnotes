@@ -91,5 +91,9 @@ ros2 run unitree_legged_real ros2_walk_example
 #+end_src
 
 **** TODO Create a Dockerfile that does all these steps
+Consider using [[https://github.com/MAVProxyUser/unitree_ros2_ws][this fork]].
 **** TODO Figure out how to ssh into this or something instead of vnc.
 **** TODO Simple teleoperation example.
+The pre-existing teleop node publishes Twist messages. There seems to be some [[https://github.com/unitreerobotics/unitree_ros_to_real/blob/master/unitree_legged_real/include/convert.h#L304][code]] that already interops with Twist messages in the ros_to_real package, but not in the ros2_to_real one. There is a [[https://github.com/unitreerobotics/unitree_ros2_to_real/pull/2/files][pull request]] that fixes this, and a [[https://github.com/MAVProxyUser/unitree_ros2_to_real][fork]] that has these implemented along with a keyboard teleop example.
+
+I was trying to write [[../2. software/3. ros/planar_translate.py][a converter]] that turns Twist messages into supported high-level commands, but I think I will just use this fork instead.
