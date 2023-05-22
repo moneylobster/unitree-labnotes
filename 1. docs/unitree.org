@@ -1,0 +1,95 @@
+#+TITLE: Unitree Robot Notes
+#+STARTUP: overview
+
+* Quick Links
+** [[https://botland.store/img/art/inne/Go1_User_Manual_V1.4_202112.pdf][Manual]]
+** [[https://github.com/unitreerobotics/unitree_legged_sdk][unitree legged sdk]]
+** [[https://github.com/unitreerobotics/unitree_ros2_to_real][unitree ros2 package]]
+** [[https://github.com/Bin4ry/free-dog-sdk][opensource sdk]]
+** [[https://github.com/MAVProxyUser/YushuTechUnitreeGo1][Nice summarizing doc (Hostile)]]
+** [[https://github.com/maggusscheppi/Go1][Another one (MQTT guy)]]
+** [[https://www.yuque.com/ironfatty/nly1un][Chinese doc]]
+** [[https://www.generationrobots.com/media/unitree/Go1%20Datasheet_EN%20v3.0.pdf][Datasheet]]
+** [[https://www.youtube.com/watch?v=YSedTUxI0wc][ROS2 video]]
+** [[https://katie-hughes.github.io/unitree/][someone implementing low-level walking]]
+** [[https://docs.trossenrobotics.com/unitree_go1_docs/getting_started.html][Trossen Docs]]
+** [[https://github.com/aatb-ch/go1_republisher][Dog Odometry as ROS]]
+* Internals
+[[./1. imgs/NetworkLayout.png][Network Layout]]
+
+Go1 EDU: 5 SSS (cams), 3 sets of Sonar, 3 Nanos, 2D Lidar, 4G modem, foot force sensor
+* Programming
+** UDP
+*** Examples in the unitree_legged_sdk repo communicate with the robot over UDP.
+**** Alternate sdk, wip: [[https://github.com/Bin4ry/free-dog-sdk]]
+*** The robot has its own WiFi network that we connect to to send commands
+** MQTT
+[[https://github.com/MAVProxyUser/YushuTechUnitreeGo1#sending-mqtt-commands-to-the-dog]]
+** two security vulnerabilities that allow arbitrary code execution on the dog
+[[https://github.com/MAVProxyUser/YushuTechUnitreeGo1#programming-interface]]
+[[https://github.com/MAVProxyUser/YushuTechUnitreeGo1#update-interface]]
+** SDK can be used with non-EDU models
+diffs here:
+[[https://github.com/MAVProxyUser/YushuTechUnitreeGo1#sdk-usage-on-non-edu-models]]
+** The MIT Cheetah code can be called to make it do a backflip
+* Mounting stuff on the robot
+** Examples
+*** [[file:1. imgs/ses-go1-lidar.png][Lidar Mount]]
+*** [[https://www.printables.com/model/234576-unitree-go-1s-bar-and-cup-holder][Printable cupholder]]
+** DONE Figure out how mounting is done.
+* Logs
+** [2023-05-18 Thu]
+*** Tried sending commands via MQTT.
+[[../2. software/1. mqtt/mqtt_test.py]]
+
+The controller/action stuff works well without any further setup but I couldn't get the controller/stick messages do do anything. Occasionally the robot would trot in place but it wasn't super repeatable.
+
+[[../2. software/1. mqtt/mqtt_stickread.py]]
+
+This was supposed to read the stick commands coming in from the remote but it didn't seem to work. It did pick up a bunch of other messages though, seemingly status updates from the robot (encrypted?)
+
+[[../2. software/1. mqtt/mqtt_remote.py]]
+
+Turns out controller/stick works. It didn't work before because 1 was too high a number. However, it only seems to go forward. I couldn't get the robot to move differently by changing parameters.
+
+**** TODO Try listening for controller/action messages and see if those show up.
+*** Tried using the official SDK
+
+There was a bunch of stuff to install, and I couldn't be bothered to install boost and all that.
+I will try to set up the ROS thing on the laptop in Rolab according to [[https://gist.github.com/dbaldwin/feb0d279c67e0bcb191d2b366f867a84][this]] link.
+
+*** Tried the opensource SDK
+Example worked really well.
+Seems like each high level command sent lasts for ~1 second.
+
+**** DONE Does the robot always go for the most recent command? YES
+If so, I can just keep on sending commands as fast as possible.
+
+*** Installing official SDK on the lab laptop
+Only did the first step so far.
+
+** [2023-05-22 Mon]
+*** Installed the ROS2 sdk on the laptop.
+Followed [[https://gist.github.com/dbaldwin/feb0d279c67e0bcb191d2b366f867a84][this]].
+The process itself was a bit cumbersome, had to do a lot of steps, including fixing typos and building over and over again.
+
+This created a ROS2 container that I access via VNC.
+
+I got the [[https://github.com/unitreerobotics/unitree_ros2_to_real/blob/main/src/ros2_walk_example.cpp][high-level walk example]] to work. None of the steps about configuring the IP address were done, it seems those aren't really necessary. Running the example requires:
+
+#+begin_src bash
+cd ros2_ws
+colcon build
+source install/setup.bash
+#+end_src
+
+on two separate terminals, then running these different commands:
+
+#+begin_src bash
+ros2 run unitree_legged_real ros2_udp highlevel
+ros2 run unitree_legged_real ros2_walk_example
+#+end_src
+
+**** TODO Create a Dockerfile that does all these steps
+**** TODO Figure out how to ssh into this or something instead of vnc.
+**** TODO Simple teleoperation example.
