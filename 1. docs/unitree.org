@@ -7,7 +7,7 @@
 ** [[https://github.com/unitreerobotics/unitree_ros2_to_real][unitree ros2 package]]
 ** [[https://github.com/Bin4ry/free-dog-sdk][opensource sdk]]
 ** [[https://github.com/MAVProxyUser/YushuTechUnitreeGo1][Nice summarizing doc (Hostile)]]
-** [[https://github.com/maggusscheppi/Go1][Another one (MQTT guy)]]
+** [[https://github.com/maggusscheppi/Go1][Another one (Magguss)]]
 ** [[https://www.yuque.com/ironfatty/nly1un][Chinese doc]]
 ** [[https://www.generationrobots.com/media/unitree/Go1%20Datasheet_EN%20v3.0.pdf][Datasheet]]
 ** [[https://www.youtube.com/watch?v=YSedTUxI0wc][ROS2 video]]
@@ -122,3 +122,15 @@ walkexample works with twist_sub.
 The twist messages (velCmdCallback) did not have code to send the messages via udp. I added them in. Now it works!
 
 ***** TODO Make your own fork of these libraries where the keyboard teleop works out of the box.
+** [2023-05-29 Mon]
+*** Can ssh into robot
+Turns out you need to ssh into the pi first, then you can ssh into the nanos from there.
+*** Backing up before doing any modifications
+Following Hostile's doc.
+Connected a usb to the rpi.
+**** Backup [0/4]
+***** TODO Raspberry pi (192.168.123.161)
+Size:
+***** TODO Nano2 (192.168.123.14)
+***** TODO Nano3 (Main nano) (192.168.123.15)
+***** TODO Nano1 (Head nano) (192.168.123.13)
