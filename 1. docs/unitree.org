@@ -128,9 +128,10 @@ Turns out you need to ssh into the pi first, then you can ssh into the nanos fro
 *** Backing up before doing any modifications
 Following Hostile's doc.
 Connected a usb to the rpi.
+Backup took some time, much more than what I expected from the doc, around 20 minutes, then dd stopped since it hit the 4GB limit of my FAT32 drive.
+Formatted drive to ext4, dd took a long time and became unresponsive. Shut down system. Seems to only have written ~60MB upon termination.
 **** Backup [0/4]
 ***** TODO Raspberry pi (192.168.123.161)
-Size:
 ***** TODO Nano2 (192.168.123.14)
 ***** TODO Nano3 (Main nano) (192.168.123.15)
 ***** TODO Nano1 (Head nano) (192.168.123.13)
