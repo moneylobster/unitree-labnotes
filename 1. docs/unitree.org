@@ -12,8 +12,17 @@
 ** [[https://www.generationrobots.com/media/unitree/Go1%20Datasheet_EN%20v3.0.pdf][Datasheet]]
 ** [[https://www.youtube.com/watch?v=YSedTUxI0wc][ROS2 video]]
 ** [[https://katie-hughes.github.io/unitree/][someone implementing low-level walking]]
+*** [[https://github.com/katie-hughes/unitree_ros2][their ros2 setup]]
+*** [[https://ngmor.github.io/projects/legged-autonomous-inspection/][inspection application from nw uni]]
+*** [[https://marnonel6.github.io/projects/1-guidedog-unitreego1][guide dog application from nw uni]]
+*** [[https://avazahedi.github.io/projects/02-hgr-go1][gesture based ctrl from nw uni]]
 ** [[https://docs.trossenrobotics.com/unitree_go1_docs/getting_started.html][Trossen Docs]]
 ** [[https://github.com/aatb-ch/go1_republisher][Dog Odometry as ROS]]
+** [[https://github.com/SailorTheMan/unitree_slam][slam - ros1]]
+realsense & lidar it seems
+** [[https://github.com/ShuoYangRobotics/A1-QP-MPC-Controller][MPC controller, but for A1]]
+** [[https://github.com/antonilo/vision_locomotion][ML controller, but for A1]]
+** [[https://github.com/zerenluo123/Go1-RL-Controller][RL controller, only sim as of now]]
 * Internals
 [[./1. imgs/NetworkLayout.png][Network Layout]]
 
