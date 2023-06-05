@@ -139,9 +139,12 @@ Following Hostile's doc.
 Connected a usb to the rpi.
 Backup took some time, much more than what I expected from the doc, around 20 minutes, then dd stopped since it hit the 4GB limit of my FAT32 drive.
 Formatted drive to ext4, dd took a long time and became unresponsive. Shut down system. Seems to only have written ~60MB upon termination.
-**** Backup [0/4]
-***** TODO Raspberry pi (192.168.123.161)
-Seems to be around 17GB.
+**** Backup [1/4]
+***** DONE Raspberry pi (192.168.123.161)
+Used space seems to be around 17GB.
+Copied ~31,9GB. (into a 32GB drive somehow!)
+Took 3336.87s
+9.7MB/s
 ***** TODO Nano2 (192.168.123.14)
 ***** TODO Nano3 (Main nano) (192.168.123.15)
 ***** TODO Nano1 (Head nano) (192.168.123.13)
@@ -155,3 +158,6 @@ The raspberry can't interface with exFAT, but can read NTFS drives. Backing up t
 Even though ~dd~ copied more than the 17GB ~df~ claims the used storage in the pi to be, ~dd~ hasn't stopped yet, and is at 22GB.
 Turns out ~dd~ copies the entire partition, no matter if it's used or not.
 For the future [[https://raspberrypi.stackexchange.com/questions/120124/how-to-copy-sd-card-whithout-copying-the-unallocated-space/120154#120154][image-backup]] can be considered instead.
+Or gzipping the image at the very least.
+**** TODO Copy disk image to a lab computer
+maybe gzip it first?
