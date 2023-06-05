@@ -100,7 +100,7 @@ ros2 run unitree_legged_real ros2_walk_example
 
 **** TODO Create a Dockerfile that does all these steps
 Consider using [[https://github.com/MAVProxyUser/unitree_ros2_ws][this fork]].
-**** TODO Figure out how to ssh into this or something instead of vnc.
+**** DONE Figure out how to ssh into this or something instead of vnc.
 **** DONE Simple teleoperation example.
 The pre-existing teleop node publishes Twist messages. There seems to be some [[https://github.com/unitreerobotics/unitree_ros_to_real/blob/master/unitree_legged_real/include/convert.h#L304][code]] that already interops with Twist messages in the ros_to_real package, but not in the ros2_to_real one. There is a [[https://github.com/unitreerobotics/unitree_ros2_to_real/pull/2/files][pull request]] that fixes this, and a [[https://github.com/MAVProxyUser/unitree_ros2_to_real][fork]] that has these implemented along with a keyboard teleop example.
 
@@ -141,6 +141,7 @@ Backup took some time, much more than what I expected from the doc, around 20 mi
 Formatted drive to ext4, dd took a long time and became unresponsive. Shut down system. Seems to only have written ~60MB upon termination.
 **** Backup [0/4]
 ***** TODO Raspberry pi (192.168.123.161)
+Seems to be around 17GB.
 ***** TODO Nano2 (192.168.123.14)
 ***** TODO Nano3 (Main nano) (192.168.123.15)
 ***** TODO Nano1 (Head nano) (192.168.123.13)
@@ -151,3 +152,6 @@ Formatted drive to ext4, dd took a long time and became unresponsive. Shut down 
 **** It works ok, but robot doesn't rotate exactly 90 deg for 1.57 rotation command so the path is not an exact square
 *** Backup
 The raspberry can't interface with exFAT, but can read NTFS drives. Backing up to an NTFS drive now.
+Even though ~dd~ copied more than the 17GB ~df~ claims the used storage in the pi to be, ~dd~ hasn't stopped yet, and is at 22GB.
+Turns out ~dd~ copies the entire partition, no matter if it's used or not.
+For the future [[https://raspberrypi.stackexchange.com/questions/120124/how-to-copy-sd-card-whithout-copying-the-unallocated-space/120154#120154][image-backup]] can be considered instead.
