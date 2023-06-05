@@ -149,3 +149,5 @@ Formatted drive to ext4, dd took a long time and became unresponsive. Shut down 
 **** Made a simple ros2 package that publishes forward and left commands on cmd_vel alternately
 [[../2. software/3. ros/1. packages/square_demo/][package folder]] here
 **** It works ok, but robot doesn't rotate exactly 90 deg for 1.57 rotation command so the path is not an exact square
+*** Backup
+The raspberry can't interface with exFAT, but can read NTFS drives. Backing up to an NTFS drive now.
