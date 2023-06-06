@@ -26,7 +26,7 @@ realsense & lidar it seems
 * Internals
 [[./1. imgs/NetworkLayout.png][Network Layout]]
 
-Go1 EDU: 5 SSS (cams), 3 sets of Sonar, 3 Nanos, 2D Lidar, 4G modem, foot force sensor
+Go1 EDU: 5 SSS (cams), 3 sets of Sonar, 3 Nanos, 2D Lidar (where?), 4G modem, foot force sensor
 * Programming
 ** UDP
 *** Examples in the unitree_legged_sdk repo communicate with the robot over UDP.
@@ -159,5 +159,11 @@ Even though ~dd~ copied more than the 17GB ~df~ claims the used storage in the p
 Turns out ~dd~ copies the entire partition, no matter if it's used or not.
 For the future [[https://raspberrypi.stackexchange.com/questions/120124/how-to-copy-sd-card-whithout-copying-the-unallocated-space/120154#120154][image-backup]] can be considered instead.
 Or gzipping the image at the very least.
-**** TODO Copy disk image to a lab computer
+**** DONE Copy disk image to a lab computer
 maybe gzip it first?
+** [2023-06-06 Tue]
+*** New goal: a line following demo
+Use front cam.
+*** TODO Access front cam
+*** TODO Access go1 odometry
+Test it for drift and whatnot sometime.
