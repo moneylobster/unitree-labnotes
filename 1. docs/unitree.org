@@ -172,5 +172,13 @@ Test it for drift and whatnot sometime.
 Backing up the head jetson.
 ~dd if=/dev/mmcblk0 bs=4096 status=progress | gzip -c | ssh pi@192.168.123.161 'cat > /media/pi/USBDRIVE/go1/nano2gb/mmcblk0.gz'~
 Got stuck twice, once on 1.4GB, then on 1.8GB. Terminates cleanly, but to restart, the previous backup file needs to be deleted.
-**** TODO Try with gzip -cv to see if there is a problem with gzip
+**** DONE Try with gzip -cv to see if there is a problem with gzip
+Did not print anything out.
+** [2023-06-20 Tue]
+*** Jetson backup
+Trying it again with 32M blocksize. This time it got stuck on 3.2GB.
+Trying again with 1G blocksize. Seems stuck after first block, 1.1GB.
+Trying again with 300M blocksize. Seems stuck at 1.3GB.
+Could this be an issue with cooling the Jetson?
+Retrying with 64M blocksize. Stuck at 1.6GB.
 
