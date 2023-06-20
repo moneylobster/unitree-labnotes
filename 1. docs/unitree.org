@@ -170,7 +170,9 @@ Test it for drift and whatnot sometime.
 ** [2023-06-19 Mon]
 *** Jetson backup
 Backing up the head jetson.
-~dd if=/dev/mmcblk0 bs=4096 status=progress | gzip -c | ssh pi@192.168.123.161 'cat > /media/pi/USBDRIVE/go1/nano2gb/mmcblk0.gz'~
+#+begin_src bash
+sudo dd if=/dev/mmcblk0 bs=4096 status=progress | gzip -c | ssh pi@192.168.123.161 'cat > /media/pi/USBDRIVE/go1/jetson1/mmcblk0.gz'
+#+end_src
 Got stuck twice, once on 1.4GB, then on 1.8GB. Terminates cleanly, but to restart, the previous backup file needs to be deleted.
 **** DONE Try with gzip -cv to see if there is a problem with gzip
 Did not print anything out.
