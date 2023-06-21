@@ -46,6 +46,9 @@ diffs here:
 *** [[file:1. imgs/ses-go1-lidar.png][Lidar Mount]]
 *** [[https://www.printables.com/model/234576-unitree-go-1s-bar-and-cup-holder][Printable cupholder]]
 ** DONE Figure out how mounting is done.
+* Accessing data on the robot
+** Dashboard
+There is a robot dashboard served via http on the rpi: 192.168.123.161
 * Logs
 ** [2023-05-18 Thu]
 *** Tried sending commands via MQTT.
@@ -183,4 +186,5 @@ Trying again with 1G blocksize. Seems stuck after first block, 1.1GB.
 Trying again with 300M blocksize. Seems stuck at 1.3GB.
 Could this be an issue with cooling the Jetson?
 Retrying with 64M blocksize. Stuck at 1.6GB.
-
+*** Dashboard
+There is a robot dashboard served via http on the rpi: 192.168.123.161. There are camera feeds, battery status, and some other stuff. There is a plugins section with a SLAM button, I should try that out.
