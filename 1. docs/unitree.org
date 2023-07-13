@@ -199,3 +199,4 @@ The robot dashboard provides a single view for each stereo camera. There is no u
 *** Cameras
 Found a ROS2 camera repo: https://github.com/ngmor/unitree_camera
 Another method that seems to tap into the cameras with minimal modification: https://github.com/MAVProxyUser/YushuTechUnitreeGo1/blob/main/StreamCamCross.py
+Tried to make the python script work but couldn't get the IP changed.
