@@ -23,6 +23,7 @@ realsense & lidar it seems
 ** [[https://github.com/ShuoYangRobotics/A1-QP-MPC-Controller][MPC controller, but for A1]]
 ** [[https://github.com/antonilo/vision_locomotion][ML controller, but for A1]]
 ** [[https://github.com/zerenluo123/Go1-RL-Controller][RL controller, only sim as of now]]
+** [[https://github.com/ngmor/unitree_camera][ROS2 Camera Feed]]
 * Internals
 [[./1. imgs/NetworkLayout.png][Network Layout]]
 
@@ -49,6 +50,10 @@ diffs here:
 * Accessing data on the robot
 ** Dashboard
 There is a robot dashboard served via http on the rpi: 192.168.123.161
+** Cameras
+- https://github.com/aatb-ch/go1_republisher
+- https://github.com/ngmor/unitree_camera
+- https://github.com/MAVProxyUser/YushuTechUnitreeGo1/blob/main/StreamCamCross.py
 * Logs
 ** [2023-05-18 Thu]
 *** Tried sending commands via MQTT.
@@ -191,3 +196,6 @@ There is a robot dashboard served via http on the rpi: 192.168.123.161. There ar
 ** <2023-07-13 Thu>
 *** Dashboard
 The robot dashboard provides a single view for each stereo camera. There is no ultrasonic sensor data either. The SLAM plugin doesn't seem to be doing anything.
+*** Cameras
+Found a ROS2 camera repo: https://github.com/ngmor/unitree_camera
+Another method that seems to tap into the cameras with minimal modification: https://github.com/MAVProxyUser/YushuTechUnitreeGo1/blob/main/StreamCamCross.py
