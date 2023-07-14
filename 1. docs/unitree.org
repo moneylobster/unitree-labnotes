@@ -147,14 +147,17 @@ Following Hostile's doc.
 Connected a usb to the rpi.
 Backup took some time, much more than what I expected from the doc, around 20 minutes, then dd stopped since it hit the 4GB limit of my FAT32 drive.
 Formatted drive to ext4, dd took a long time and became unresponsive. Shut down system. Seems to only have written ~60MB upon termination.
-**** Backup [1/4]
+**** Backup [2/4]
 ***** DONE Raspberry pi (192.168.123.161)
 Used space seems to be around 17GB.
 Copied ~31,9GB. (into a 32GB drive somehow!)
 Took 3336.87s
 9.7MB/s
 ***** TODO Nano2 (192.168.123.14)
-***** TODO Nano3 (Main nano) (192.168.123.15)
+***** DONE Nano3 (Main nano) (192.168.123.15)
+Copied ~16GB. (gzipped size:5.16GB)
+Took 1965.5s
+8.0MB/s
 ***** TODO Nano1 (Head nano) (192.168.123.13)
 ** [2023-06-05 Mon]
 *** Simple square demo
@@ -200,3 +203,7 @@ The robot dashboard provides a single view for each stereo camera. There is no u
 Found a ROS2 camera repo: https://github.com/ngmor/unitree_camera
 Another method that seems to tap into the cameras with minimal modification: https://github.com/MAVProxyUser/YushuTechUnitreeGo1/blob/main/StreamCamCross.py
 Tried to make the python script work but couldn't get the IP changed.
+** <2023-07-14 Fri>
+*** Backup
+Trying to back up the other nanos to see if they get stuck as well.
+Started with Nano3. Failed once with bs=1024k, succeeded with bs=32M.
